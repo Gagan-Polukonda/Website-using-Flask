@@ -16,14 +16,17 @@ def index():
     name = args.get('name')
     return render_template("index.html", name=name)
 
+
 @views.route("/profile")
 def profile():
     return render_template("profile.html")
+
 
 # returning json
 @views.route("/json")
 def get_json():
     return jsonify({'name': 'Gagan', 'coolness': 10})
+
 
 # get data from a request(in json format)
 # and redirect
@@ -31,6 +34,7 @@ def get_json():
 def get_data():
     data = request.json
     return jsonify(data)
+
 
 @views.route("/go-to-home")
 def go_to_home():
