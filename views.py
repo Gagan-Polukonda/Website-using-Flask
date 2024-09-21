@@ -10,16 +10,11 @@ def home():
 
 
 # returning index
-@views.route("/index")
+@views.route("/username")
 def index():
     args = request.args
     name = args.get('name')
     return render_template("index.html", name=name)
-
-
-@views.route("/profile")
-def profile():
-    return render_template("profile.html")
 
 
 # returning json
@@ -39,3 +34,20 @@ def get_data():
 @views.route("/go-to-home")
 def go_to_home():
     return redirect(url_for("views.home"))
+
+
+@views.route("/login", methods=["POST", "GET"])
+def login():
+    if request.method == "POST":
+        user = request.form["nm"]
+        return redirect(url_for("views.user", usr=user))
+    else:
+        return render_template("profile.html")
+
+
+@views.route("/<usr>")
+def user(usr):
+    if usr in ['Gagan']:
+        return f"<h1>{usr}</h1>"
+    else:
+        return "<h1>User not found</h1>"
